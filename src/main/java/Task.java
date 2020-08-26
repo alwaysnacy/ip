@@ -22,8 +22,4 @@ public class Task {
     public void setAsDone ()  {
         isDone = true;
     }
-
-    public void printTaskDone() {
-        System.out.println(this.getStatus() + task);
-    }
 }

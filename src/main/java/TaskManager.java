@@ -13,14 +13,15 @@ public class TaskManager {
 
     public void printTasks() {
         for (int i = 0; i <numTasks; i++) {
-            System.out.println(i+1 + "." + tasks[i].getStatus()+ " " + tasks[i].getTask());
+            System.out.println((i + 1) + "." + tasks[i].getStatus() + " " + tasks[i].getTask());
         }
     }
 
-    public void setTaskAsDone(int num) {
-        tasks[num].setAsDone();
+    public void setTaskAsDone(int id) {
+        tasks[id].setAsDone();
     }
-    public void printTaskDone(int num) {
-        System.out.println(tasks[num].getStatus() + " " + tasks[num].getTask());
+
+    public void printTaskDone(int id) {
+        System.out.println(tasks[id].getStatus() + " " + tasks[id].getTask());
     }
 }
