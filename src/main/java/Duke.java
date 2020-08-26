@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        String[] tasks = new String[100];
+        TaskManager list1 = new TaskManager();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -32,13 +32,19 @@ public class Duke {
 
             System.out.println();
             if (line.equals("list")) {
-                for (int i=0; i<j; i++) {
-                    System.out.println(i+1 + ". " + tasks[i]);
+                list1.printTasks();
+            } else if (line.contains("done")) {
+                String[] commandSplit = line.split(" ");
+                int taskID = Integer.parseInt(commandSplit[1]);
+                if (taskID <= list1.getNumTasks()) {
+                    list1.setTaskAsDone(taskID-1);
+                    list1.printTaskDone(taskID-1);
+                } else {
+                    System.out.println("Invalid Task!");
                 }
             } else {
                 System.out.println("added: " + line);
-                tasks[j] = line;
-                j++;
+                list1.addTask(line);
             }
 
             for (int i = 0; i < 20; i++) {
