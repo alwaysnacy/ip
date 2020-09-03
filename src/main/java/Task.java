@@ -11,10 +11,6 @@ public class Task {
         this.id = id;
     }
 
-    public String getTask() {
-        return description;
-    }
-
     public String getStatus() {
         return (isDone ? "[\u2713]" : "[\u2718]");
     }
