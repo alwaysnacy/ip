@@ -77,6 +77,13 @@ public class TaskManager {
         }
     }
 
+    public void deleteTask(int id) {
+        numTasks--;
+        for (int i = id; i<numTasks-1; i++) {
+            tasks[i] = tasks[i+1];
+        }
+    }
+
     public void printOneTask(int id) {
         System.out.println(tasks[id].toString());
     }
