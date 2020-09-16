@@ -1,4 +1,7 @@
-import java.io.*;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidTaskTypeException;
+import duke.task.TaskManager;
+
 import java.util.Scanner;
 
 public class Duke {

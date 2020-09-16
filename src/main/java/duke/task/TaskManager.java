@@ -1,8 +1,16 @@
+package duke.task;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidTaskTypeException;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+
 public class TaskManager {
     private Task[] tasks = new Task[100];
     private int numTasks =0;
 
-    public void addTask(String task) throws InvalidTaskTypeException{
+    public void addTask(String task) throws InvalidTaskTypeException {
         try {
             if (task.contains("todo")) {
                 addToDo(task);
@@ -29,7 +37,7 @@ public class TaskManager {
         }
     }
 
-    public void addDeadline(String task) throws DukeException{
+    public void addDeadline(String task) throws DukeException {
         try {
             task = task.split(" ", 2)[1];
             String description = task.split("/by")[0].trim();
@@ -44,7 +52,7 @@ public class TaskManager {
         }
     }
 
-    public void addEvent(String task) throws DukeException{
+    public void addEvent(String task) throws DukeException {
         try {
             task = task.split(" ", 2)[1];
             String description = task.split("/at")[0].trim();
