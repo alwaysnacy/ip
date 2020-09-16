@@ -1,3 +1,5 @@
+package duke.main;
+
 import duke.exceptions.DukeException;
 import duke.exceptions.InvalidTaskTypeException;
 import duke.task.TaskManager;
@@ -19,7 +21,7 @@ public class Duke {
 
             System.out.println(separatingLine);
 
-            System.out.println("Hello! I'm Duke\n" + "What do you want to do today?");
+            System.out.println("Hello! I'm duke.main.Duke\n" + "What do you want to do today?");
             System.out.println(separatingLine);
         } else if (greeting.equals("bye")) {
             System.out.println(separatingLine);
