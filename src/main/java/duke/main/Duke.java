@@ -3,6 +3,14 @@ package duke.main;
 import duke.exceptions.DukeException;
 import duke.exceptions.InvalidTaskTypeException;
 import duke.task.TaskManager;
+import duke.task.Task;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.util.Scanner;
 
@@ -30,14 +38,20 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
         TaskManager todayList = new TaskManager();
 
         printGreetings("hello");
-        printGreetings("hello");
 
-        Scanner sc = new Scanner(System.in);
-        String text = sc.nextLine();
+        String fileName = "duke.txt";
+        Path filePath = null;
+        FileWriter fw = new FileWriter(String.valueOf(filePath));
+
+        Scanner sc = new Scanner(filePath);
+        filePath = Paths.get(fileName);
+
+//        Scanner sc = new Scanner(System.in);
+          String text = sc.nextLine();
 
         while (!text.equals("bye")) {
             System.out.println(separatingLine);
@@ -59,6 +73,7 @@ public class Duke {
                     System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
                 } else{
                     todayList.addTask(text);
+                    updateFile(filePath);
                     System.out.println("Got it. I've added this task: ");
                     todayList.printOneTask(todayList.getNumTasks() - 1);
                     System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
@@ -73,6 +88,9 @@ public class Duke {
 
             System.out.println(separatingLine);
             text = sc.nextLine();
+        }
+        for (int i=0; i< todayList.getNumTasks(); i++) {
+            fw.write(todayList[i].toString() + System.lineSeparator());
         }
 
         printGreetings("bye");
@@ -89,5 +107,14 @@ public class Duke {
         } else {
             throw new DukeException();
         }
+    }
+
+    private static void updateFile(Path filePath) throws IOException {
+        FileWriter fw = new FileWriter(String.valueOf(filePath));
+        for (Task t : todayList) {
+            fw.write(t.toString() + System.lineSeparator());
+        }
+        fw.write("There are a total of " + arrayOfTasks.size() + " tasks in the list.");
+        fw.close();
     }
 }
