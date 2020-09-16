@@ -67,6 +67,8 @@ public class Duke {
                 } else if (text.contains("delete")){
                     String[] commandSplit = text.split(" ");
                     int taskID = Integer.parseInt(commandSplit[1]) - 1;
+                    System.out.println("Noted down. I've deleted this task: ");
+                    todayList.printOneTask(todayList.getNumTasks() - 1);
                     todayList.deleteTask(taskID);
                     System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
                 } else{
