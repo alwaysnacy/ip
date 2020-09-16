@@ -25,9 +25,10 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         TaskManager todayList = new TaskManager();
 
+        printGreetings("hello");
         printGreetings("hello");
 
         Scanner sc = new Scanner(System.in);
@@ -37,25 +38,25 @@ public class Duke {
             System.out.println(separatingLine);
 
             //list command
-            if (text.equals("list")) {
-                todayList.printTasks();
-            //done command
-            } else if (text.contains("done")) {
-                String[] commandSplit = text.split(" ");
-                int taskID = Integer.parseInt(commandSplit[1]) - 1;
-                if (taskID < todayList.getNumTasks()) {
-                    todayList.setTaskAsDone(taskID);
-                    System.out.println("Nice! I've marked this task as done:");
-                    todayList.printOneTask(taskID);
+            try {
+                if (text.equals("list")) {
+                    todayList.printTasks();
+                    //done command
+                } else if (text.contains("done")) {
+                    setTaskDone(text, todayList);
+                    //add command
                 } else {
-                    System.out.println("Invalid Task!");
+                    todayList.addTask(text);
+                    System.out.println("Got it. I've added this task: ");
+                    todayList.printOneTask(todayList.getNumTasks() - 1);
+                    System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
                 }
-            //add command
-            } else {
-                System.out.println("Got it. I've added this task: ");
-                todayList.addTask(text);
-                todayList.printOneTask(todayList.getNumTasks() - 1);
-                System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
+            } catch (DukeException e) {
+                System.out.println("OOPS!!! There is no such task!");
+            } catch (NullPointerException e) {
+                System.out.println("OOPS!!! No task ID like this!");
+            } catch (InvalidTaskTypeException e) {
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means.");
             }
 
             System.out.println(separatingLine);
@@ -64,5 +65,17 @@ public class Duke {
 
         printGreetings("bye");
 
+    }
+
+    public static void setTaskDone(String text, TaskManager todayList) throws DukeException{
+        String[] commandSplit = text.split(" ");
+        int taskID = Integer.parseInt(commandSplit[1]) - 1;
+        if (taskID < todayList.getNumTasks()) {
+            todayList.setTaskAsDone(taskID);
+            System.out.println("Nice! I've marked this task as done:");
+            todayList.printOneTask(taskID);
+        } else {
+            throw new DukeException();
+        }
     }
 }
