@@ -29,6 +29,7 @@ public class Duke {
         TaskManager todayList = new TaskManager();
 
         printGreetings("hello");
+        printGreetings("hello");
 
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
