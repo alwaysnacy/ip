@@ -6,8 +6,10 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 
+import java.util.ArrayList;
+
 public class TaskManager {
-    private Task[] tasks = new Task[100];
+    private ArrayList<Task> tasks = new ArrayList<Task>();
     private int numTasks =0;
 
     public void addTask(String task) throws InvalidTaskTypeException {
@@ -31,7 +33,7 @@ public class TaskManager {
     public void addToDo(String task) {
         try {
             String description = task.split(" ", 2)[1];
-            tasks[numTasks] = new ToDo(description, numTasks);
+            tasks.add(new ToDo(description, numTasks));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("OOPS!!! The description of a todo cannot be empty.");
         }
@@ -45,7 +47,7 @@ public class TaskManager {
                 throw new DukeException();
             } else {
                 String byTime = task.split("/by")[1].trim();
-                tasks[numTasks] = new Deadline(description, numTasks, byTime);
+                tasks.add(new Deadline(description, numTasks, byTime));
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println("OOPS!!! The description of a deadline cannot be empty.");
@@ -60,7 +62,7 @@ public class TaskManager {
                 throw new DukeException();
             } else {
                 String byTime = task.split("/at")[1].trim();
-                tasks[numTasks] = new Event(description, numTasks, byTime);
+                tasks.add(new Event(description, numTasks, byTime));
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println("OOPS!!! The description of an event cannot be empty.");
@@ -73,23 +75,24 @@ public class TaskManager {
 
     public void printTasks() {
         for (int i = 0; i <numTasks; i++) {
-            System.out.println((i + 1) + "." + tasks[i].toString());
+            System.out.println((i + 1) + "." + tasks.get(i).toString());
         }
     }
 
     public void deleteTask(int id) {
-        numTasks--;
         for (int i = id; i<numTasks-1; i++) {
-            tasks[i] = tasks[i+1];
+            tasks.set(i, tasks.get(i+1));
         }
+        tasks.remove(numTasks-1);
+        numTasks--;
     }
 
     public void printOneTask(int id) {
-        System.out.println(tasks[id].toString());
+        System.out.println(tasks.get(id).toString());
     }
 
     public void setTaskAsDone(int id) {
-        tasks[id].setAsDone();
+        tasks.get(id).setAsDone();
     }
 
 }

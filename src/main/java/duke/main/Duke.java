@@ -14,6 +14,7 @@ import java.io.IOException;
 
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     private static String separatingLine = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
@@ -43,16 +44,16 @@ public class Duke {
         TaskManager todayList = new TaskManager();
 
         printGreetings("hello");
+//        File f = new File("data/duke.txt");
+//        System.out.println("full path: " + f.getAbsolutePath());
+//        Path filePath = null;
+//        FileWriter fw = new FileWriter(String.valueOf("data/duke.txt"));
+//
+//          Scanner sc = new Scanner(f);
+//        filePath = Paths.get(fileName);
 
-        String fileName = "duke.txt";
-        Path filePath = null;
-        FileWriter fw = new FileWriter(String.valueOf(filePath));
-
-        Scanner sc = new Scanner(filePath);
-        filePath = Paths.get(fileName);
-
-//        Scanner sc = new Scanner(System.in);
-          String text = sc.nextLine();
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
 
         while (!text.equals("bye")) {
             System.out.println(separatingLine);
@@ -69,12 +70,11 @@ public class Duke {
                     String[] commandSplit = text.split(" ");
                     int taskID = Integer.parseInt(commandSplit[1]) - 1;
                     System.out.println("Noted down. I've deleted this task: ");
-                    todayList.printOneTask(todayList.getNumTasks() - 1);
+                    todayList.printOneTask(taskID);
                     todayList.deleteTask(taskID);
                     System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
                 } else{
                     todayList.addTask(text);
-                    updateFile(filePath);
                     System.out.println("Got it. I've added this task: ");
                     todayList.printOneTask(todayList.getNumTasks() - 1);
                     System.out.println("Now you have " + todayList.getNumTasks() + " tasks in the list.");
@@ -90,9 +90,9 @@ public class Duke {
             System.out.println(separatingLine);
             text = sc.nextLine();
         }
-        for (int i=0; i< todayList.getNumTasks(); i++) {
-            fw.write(todayList[i].toString() + System.lineSeparator());
-        }
+//        for (int i=0; i< todayList.getNumTasks(); i++) {
+//            fw.write(todayList[i].toString() + System.lineSeparator());
+//        }
 
         printGreetings("bye");
 
@@ -110,12 +110,4 @@ public class Duke {
         }
     }
 
-    private static void updateFile(Path filePath) throws IOException {
-        FileWriter fw = new FileWriter(String.valueOf(filePath));
-        for (Task t : todayList) {
-            fw.write(t.toString() + System.lineSeparator());
-        }
-        fw.write("There are a total of " + arrayOfTasks.size() + " tasks in the list.");
-        fw.close();
-    }
 }
