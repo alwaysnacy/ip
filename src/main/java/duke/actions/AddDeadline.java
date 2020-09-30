@@ -19,8 +19,8 @@ public class AddDeadline extends AddAction{
 
     @Override
     public ActionResult executeAction() {
-
         taskList.addTask(task);
+
         return new ActionResult(String.format(MESSAGE, task, taskList.getNumTasks()));
 
     }
