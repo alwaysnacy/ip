@@ -13,14 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Storage {
-    public static final String DEFAULT_STORAGE_FILEPATH = "duke.txt";
-    private static final String UPDATE_FILE_ERROR_MESSAGE = "Could not write to file";
-    private static final String LOAD_FILE_ERROR_MESSAGE = "Could not load file.";
-    private static final String NO_FILE_ERROR_MESSAGE = "File not found, new duke.txt file will be created"
-            + "to store new tasks added.";
-    public static final String DATE_FORMAT_OF_FILE = "MMM dd yyyy";
-    private static final int LENGTH_OF_DATE = 11;
-    public static final String TIME_FORMAT_OF_FILE = "HH:mm";
+
 
     public final Path path;
 

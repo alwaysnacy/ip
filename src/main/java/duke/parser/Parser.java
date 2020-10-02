@@ -116,17 +116,6 @@ public class Parser {
     }
 
 
-    /**
-     * converts String parameter to LocalDateTime object
-     *
-     * @param dateAndTime full argument String, extracted after the action word
-     * @return the LocalDateTime object
-     */
-    private LocalDateTime convertDateTimeFormat(String dateAndTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(dateAndTime, formatter);
-        return dateTime;
-    }
 
 
     /**
@@ -145,12 +134,7 @@ public class Parser {
 
     }
 
-    /**
-     * Parses arguments to prepare parameters to initialize FinishAction
-     *
-     * @param args full argument String, extracted after the action word
-     * @return the prepared FinishAction object
-     */
+
     private Action prepareFinishAction(String args) {
         try {
             final int targetIndex = Integer.parseInt(args);
