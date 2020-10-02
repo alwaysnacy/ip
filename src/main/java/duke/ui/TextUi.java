@@ -1,9 +1,7 @@
 package duke.ui;
 
-import duke.actions.ActionResult;
-import duke.task.Task;
+import duke.action.ActionResult;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static duke.message.Messages.GOODBYE_MESSAGE;
@@ -35,8 +33,8 @@ public class TextUi {
 
     public void printScreen(String... messages) {
         for (String message: messages) {
-            if (message == LOGO_MESSAGE) {
-                System.out.println(LOGO_MESSAGE);
+            if (message == LOGO_MESSAGE || message == COMMAND_DIVIDER) {
+                System.out.println(message);
             } else {
                 System.out.println(REPLY_IDENTIFIER + message.replace("\n", NEWLINE + REPLY_IDENTIFIER));
             }
@@ -44,17 +42,6 @@ public class TextUi {
     }
 
     public void printActionResult(ActionResult result) {
-        final ArrayList<Task> resultTasks = result.getAddedTasks();
         printScreen(result.outputToScreen, COMMAND_DIVIDER);
-//        if (resultTasks != null) {
-//            printIndexedTask(resultTasks);
-//        }
     }
-
-//    private void printIndexedTask(ArrayList<Task> resultTasks) {
-//
-//        for (int i = 0; i <resultTasks.size(); i++) {
-//            System.out.println((i + 1) + "." + resultTasks.get(i).toString());
-//        }
-//    }
 }

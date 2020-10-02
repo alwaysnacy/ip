@@ -1,9 +1,11 @@
-package duke.actions;
-
-import duke.task.Task;
+package duke.action;
 
 import static duke.ui.TextUi.INDEX_OFFSET;
 
+
+/**
+ * Marks as done a task identified using it's last displayed index from the TaskManager.
+ */
 public class FinishAction extends Action {
     public static final String ACTION = "done";
     public static final String HELP_MESSAGE = ACTION + ": Set the task identified by index number as done. "

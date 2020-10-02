@@ -1,0 +1,5 @@
+T | 0 | read book
+E | 0 | project meeting | 2020-11-13 19:00
+T | 0 | borrow book
+D | 0 | return book | 2020-11-24 03:00
+E | 0 | project meeting | 2020-09-23 12:00

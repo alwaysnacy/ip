@@ -1,5 +1,8 @@
-package duke.actions;
+package duke.action;
 
+/**
+ * Shows help action.
+ */
 public class HelpAction extends Action{
     public static final String ACTION = "help";
 

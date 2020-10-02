@@ -1,9 +1,10 @@
-package duke.actions;
+package duke.action;
 
 import duke.task.Task;
 
-import static duke.ui.TextUi.INDEX_OFFSET;
-
+/**
+ * Deletes a task identified using it's last displayed index from the TaskManager.
+ */
 public class DeleteAction extends  Action {
     public static final String ACTION = "delete";
     public static final String HELP_MESSAGE = ACTION
@@ -12,7 +13,8 @@ public class DeleteAction extends  Action {
             + " Example: " + ACTION + " 1";
     private int taskID;
 
-    public static final String MESSAGE = "Noted down. I've deleted this task:\n %1$s";
+    public static final String MESSAGE = "Noted down. I've deleted this task:\n %1$s\n"
+            + "Now you have %2$d tasks in the list.";;
 
     public DeleteAction(int taskID) {
         this.taskID = taskID;
@@ -20,9 +22,8 @@ public class DeleteAction extends  Action {
 
     @Override
     public ActionResult executeAction() {
-        final Task deletedTask = taskList.getTask(taskID-INDEX_OFFSET);
-        taskList.deleteTask(this.taskID - INDEX_OFFSET);
-        return new ActionResult(String.format(MESSAGE, deletedTask));
-
+        final Task deletedTask = taskList.getTask(taskID);
+        taskList.deleteTask(this.taskID);
+        return new ActionResult(String.format(MESSAGE, deletedTask, taskList.getNumTasks()));
     }
 }

@@ -1,5 +1,8 @@
-package duke.actions;
+package duke.action;
 
+/**
+ * Exits the Duke
+ */
 public class ExitAction extends Action{
     public static final String ACTION = "bye";
 
