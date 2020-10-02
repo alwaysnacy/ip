@@ -61,7 +61,36 @@ public class Parser {
     }
 
 
+    /**
+     * Parses arguments to prepare parameters for AddTodo action
+     *
+     * @param args full argument String, extracted after the action word
+     * @return the prepared addTodo object
+     */
+    private Action prepareAddTodo(String args) {
+        return new AddTodo(args);
+    }
 
+    /**
+     * Parses arguments to prepare parameters for AddEvent action
+     *
+     * @param args full argument String, extracted after the action word
+     * @return the prepared addEvent object
+     */
+    private Action prepareAddEvent(String args) {
+        String[] descriptionAndTime = args.split("/at");
+        // Validate arg string format
+        if (descriptionAndTime.length != 2) {
+            return new InvalidAction(String.format(WRONG_FORMAT_MESSAGE, AddEvent.HELP_MESSAGE));
+        }
+
+        try {
+            LocalDateTime at = convertDateTimeFormat(descriptionAndTime[1].trim());
+            return new AddEvent(descriptionAndTime[0].trim(), at);
+        } catch (DateTimeParseException e) {
+            return new InvalidAction(String.format(WRONG_DATETIME_FORMAT_MESSAGE, AddEvent.HELP_MESSAGE));
+        }
+    }
 
     /**
      * Parses arguments to prepare parameters for AddDeadline action
