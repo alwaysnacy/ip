@@ -1,6 +1,7 @@
 # User Guide
 
 
+
 ## Starting Duke program
 
 ### Using Command Line
@@ -11,13 +12,15 @@
 6. Type in `java -Dfile.encoding=UTF-8 -jar ip.jar`, then enter to run Duke. 
 
 
+
+
 ## Viewing possible actions: `help`
 Format `help`
 
 ## Adding a task to Duke: `todo` `event` `deadline`
 Words in `UPPERCASE` are the parameters
 
-#### Adding a Todo: `todo`
+### Adding a Todo: `todo`
 Adds a Todo to the Duke
 
 _Format_: `todo DESCRIPTION`
@@ -27,7 +30,7 @@ __Example:__
 - `todo borrow The kite runner`
 - `todo return the pen get from Jen`
 
-#### Adding an Event
+### Adding an Event
 Adds an Event to the Duke
 
 _Format_: `event DESCRIPTION /at YYYY-MM-DD HH:MM`
@@ -37,7 +40,7 @@ __Example:__
 - `event project meeting /at 2020-09-23 12:00`
 - `event join the BumbleBee Welcome Tea /at 2020-09-23 12:00`
 
-#### Adding a Deadline
+### Adding a Deadline
 Adds a Deadline to the Duke
 
 _Format_: `deadline DESCRIPTION /by YYYY-MM-DD HH:MM`
