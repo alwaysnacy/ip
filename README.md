@@ -1,5 +1,6 @@
 # User Guide
 
+
 ## Starting Duke program
 
 ### Using Command Line
@@ -9,15 +10,14 @@
 4. Change the font in Command Prompt to NSimSan by typing `chcp 65001` in Command Prompt
 6. Type in `java -Dfile.encoding=UTF-8 -jar ip.jar`, then enter to run Duke. 
 
-_________
 
 ## Viewing possible actions: `help`
 Format `help`
 
-## Adding a task to Duke
+## Adding a task to Duke: `todo` `event` `deadline`
 Words in `UPPERCASE` are the parameters
 
-#### Adding a Todo: `todo` `event` `deadline`
+#### Adding a Todo: `todo`
 Adds a Todo to the Duke
 
 _Format_: `todo DESCRIPTION`
