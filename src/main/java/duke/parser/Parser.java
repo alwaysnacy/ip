@@ -115,8 +115,18 @@ public class Parser {
 
     }
 
-
-
+    /**
+     * converts String parameter to LocalDateTime object
+     *
+     * @param dateAndTime full argument String, extracted after the action word
+     * @return the LocalDateTime object
+     */
+    private LocalDateTime convertDateTimeFormat(String dateAndTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(dateAndTime, formatter);
+        return dateTime;
+    }
+    
 
     /**
      * Parses arguments to prepare parameters to initialize DeleteAction
