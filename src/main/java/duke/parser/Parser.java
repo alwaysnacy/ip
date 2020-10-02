@@ -133,8 +133,14 @@ public class Parser {
         }
 
     }
+    
 
-
+    /**
+     * Parses arguments to prepare parameters to initialize FinishAction
+     *
+     * @param args full argument String, extracted after the action word
+     * @return the prepared FinishAction object
+     */
     private Action prepareFinishAction(String args) {
         try {
             final int targetIndex = Integer.parseInt(args);
